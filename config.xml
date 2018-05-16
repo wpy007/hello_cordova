@@ -81,4 +81,6 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="1.1.19" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="2.0.5" />
+    <plugin name="com.lampa.startapp" spec="0.1.4" />
+    <plugin name="cordova-plugin-android-support-v4" spec="^21.0.1" />
 </widget>

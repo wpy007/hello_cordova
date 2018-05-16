@@ -401,6 +401,9 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
           return url;
         }
 
+        console.log('===============')
+        console.log($location.port())
+        console.log('===============')
         var slash = (!isHtml5 && url ? '/' : ''), port = $location.port();
         port = (port === 80 || port === 443 ? '' : ':' + port);
 

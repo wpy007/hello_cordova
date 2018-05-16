@@ -22,6 +22,9 @@
       }
     </script>
 
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -29,8 +32,7 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/release/js/ionic.bundle.js"></script>
     <script src="js/ng-cordova.min.js"></script>
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+    
 
 
     <!--&lt;!&ndash;map.baidu&ndash;&gt;-->
@@ -52,6 +54,44 @@
     <script src="js/common/config.js"></script>
     <!--moment-->
     <script src="js/plugin/moment.min.js"></script>
+
+    <script>
+        document.addEventListener('deviceready', function () {
+            console.log('come here')
+            console.log('startApp', startApp)
+            return
+
+            var sApp = startApp.set(
+                {
+                    /* params */
+                    action: "ACTION_VIEW",
+                    category: "CATEGORY_DEFAULT",
+                    type: "text/css",
+                    package: "com.baidu.BaiduMap",
+                    //　　　　"uri":,
+                    uri: "bdapp://map/navi?location=121.59374421884945,31.34832899775225",
+                    flags: ["FLAG_ACTIVITY_CLEAR_TOP", "FLAG_ACTIVITY_CLEAR_TASK"], // "component": ["com.android.GoBallistic","com.android.GoBallistic.Activity"],
+                    intentstart: "startActivity"
+                }
+            );
+            sApp.start(
+                function() {
+                    /* success */
+                    if (success) {
+                        console.log('success', success);
+                    }
+                },
+                function(error) {
+                    /* fail */
+        
+                    if (fail) {
+                        console.log('fail', fail)
+                    }
+                    alert("调用百度地图失败，请确认已安装百度地图！");
+                }
+            );
+        }, false)
+    </script>
     
     <!--<script src="js/plugin/HybridService.js"></script>-->
 
