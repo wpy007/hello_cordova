@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta name="format-detection" content="telephone=no"/>
+    <!--通过手机百度搜索打开网页时,百度会为你的网页进行转码-->
+    <!--<meta http-equiv="Cache-Control" content="no-siteapp"/>-->
+    <title></title>
+
+    <!--<link href="lib/ionic/css/ionic.css" rel="stylesheet">-->
+    <link href="lib/ionic/release/css/ionic.min.css" rel="stylesheet">
+    <link href="css/ionic-custom.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- un-comment this code to enable service worker-->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <!--<script src="lib/angular/angular.min.js"></script>-->
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/release/js/ionic.bundle.js"></script>
+    <script src="js/ng-cordova.min.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+
+    <!--&lt;!&ndash;map.baidu&ndash;&gt;-->
+    <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=PImDgsID9pqmsPoPD3L0s8DdddbgeSZw&services=&t="></script>
+
+    <script type="text/javascript" src="js/plugin/convertor.js"></script>
+
+    <!--<script src="lib/angular-BMap/src/angular-bmap.js"></script>-->
+    <!--jquery-->
+    <script src="js/plugin/jquery-1.11.3.min.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app2.js"></script>
+    <script src="js/controllers2.js"></script>
+    <script src="js/services2.js"></script>
+
+    <!--md5-->
+    <script src="js/plugin/jquery.md5.js"></script>
+    <script src="js/common/config.js"></script>
+    <!--moment-->
+    <script src="js/plugin/moment.min.js"></script>
+    
+    <!--<script src="js/plugin/HybridService.js"></script>-->
+
+    <!--<script src="lib/angular-BMap/dist/angular-bmap.min.js"></script>-->
+</head>
+<body ng-app="rescue">
+<!--<ion-nav-bar class="positive-bg light">-->
+    <!--&lt;!&ndash;<ion-nav-back-button class="button-clear button-light">&ndash;&gt;-->
+    <!--&lt;!&ndash;<i class="ion-chevron-left"></i> 返回&ndash;&gt;-->
+    <!--&lt;!&ndash;</ion-nav-back-button>&ndash;&gt;-->
+<!--</ion-nav-bar>-->
+<ion-nav-view></ion-nav-view>
+</body>
+</html>

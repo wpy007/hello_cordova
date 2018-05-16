@@ -1,0 +1,25 @@
+<ion-view view-title="照片查看">
+    <ion-header-bar align-title="center" class="bar bar-positive" style="/*opacity:0.9; */background-size: 100% 0px;">
+        <h1 class="title"></h1>
+        <div class="buttons" align="right">
+            <button class="button button-clear icon ion-android-close" ng-click="gotoBack()"></button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="content" overflow-scroll="true">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="true"
+                       slide-interval=5000
+                       show-pager="true" pager-click="pageClick(index)" active-slide="model.activeIndex"
+                       delegate-handle="slideimgs">
+            <ion-slide ng-repeat="x in PhotoList">
+                <!--<div style="height: 60px;"></div>-->
+                <div class="box">
+                    <ion-scroll scrollbar-x="true" zooming="true" min-zoom="1">
+                        <img class="imgcls" ng-src="{{svcUrl}}{{x.FILE_PATH}}">
+                    </ion-scroll>
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+</ion-view>

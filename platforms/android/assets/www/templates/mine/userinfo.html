@@ -1,0 +1,82 @@
+<ion-view view-title="我的资料">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            &nbsp;
+            <button class="button button-clear icon ion-ios-arrow-back" ng-click="gotoBack()"></button>
+        </div>
+        <h1 class="title">我的资料</h1>
+        <!--<div class="buttons">-->
+            <!--<button class="button button-clear icon ion-compose" ng-click="editInfo()"></button>-->
+        <!--</div>-->
+    </ion-header-bar>
+    <ion-content class="content stable-bg">
+        <div class="list">
+            <div class="item-divider-small"></div>
+            <span class="item item-avatar">
+                <img ng-src="{{currentUser.USR_AVATAR_PATH == '' ? 'img/avatar.jpg' : currentUser.USR_AVATAR_PATH}}" />
+                <p ng-click="showMyPosition()">{{currentUser.USR_NAME}}</p>
+                <p>{{currentUser.SUP_NAME}}</p>
+            </span>
+            <a class="item">
+                <p>用户姓名:&nbsp;&nbsp;&nbsp;{{currentUser.EMP_NAME}}</p>
+            </a>
+            <a class="item">
+                <p>用户状态:&nbsp;&nbsp;&nbsp;{{currentUser.USR_STATUS == 1 ? "正常" : "失效"}}</p>
+            </a>
+            <a class="item">
+                <p>供应商:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{currentUser.SUP_NAME}}</p>
+            </a>
+            <a class="item">
+                <p>联系手机:&nbsp;&nbsp;&nbsp;{{currentUser.PHONE}}</p>
+            </a>
+            <!--<a class="item">-->
+                <!--<p>电子邮箱:&nbsp;&nbsp;&nbsp;{{currentUser.USR_EMAIL}}</p>-->
+            <!--</a>-->
+            <a class="item">
+                <p>创建日期:&nbsp;&nbsp;&nbsp;{{currentUser.CREATE_DATE}}</p>
+            </a>
+
+            <br/><br/>
+            <div class="padding">
+                <button class="button button-block button-assertive" ng-click="logout()">
+                    <i class="icon ion-log-out"></i>&nbsp;注销
+                </button>
+            </div>
+
+        </div>
+
+        <div id="divMapArea" class="item-map-area" ng-show="isShow">
+            <!--<angular-bmap></angular-bmap>-->
+        </div>
+</ion-content>
+
+    <script id="templates/modal.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header">
+                <h1 class="title">资料编辑</h1>
+                <button class="button button-clear button-primary" ng-click="modal.hide()">取消</button>
+            </ion-header-bar>
+            <ion-content class="stable-new-bg">
+                <div class="item-divider-small"></div>
+                <div class="list">
+                    <label class="item item-input">
+                        <span class="input-label">真实姓名</span>
+                        <input ng-model="user.USR_REAL_NAME" type="text">
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">所在公司</span>
+                        <input ng-model="user.ORG_NAME" type="text" disabled>
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">邮箱</span>
+                        <input ng-model="user.USR_EMAIL" type="email">
+                    </label>
+                </div>
+
+                <button class="button button-full button-balanced" ng-click="updateInfo(user)">保存</button>
+                <br/>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>
+

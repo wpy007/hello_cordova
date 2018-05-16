@@ -1,0 +1,77 @@
+<ion-view view-title="救援拍照">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <h1 class="title">救援拍照</h1>
+
+        <div class="buttons">
+            <button class="button button-clear button-light" ng-click="Cancel()">关闭</button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="content stable-bg has-footer-m">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <div class="list padding">
+            <!--<div>-->
+            <ul style="padding: 5px;">
+                <li class="image-item" ng-repeat="x in imagesList">
+                    <i class="delete icon ion-trash-a energized" ng-click="Delete(x)"></i>
+                    <i class="upload icon ion-checkmark balanced" ng-if="x.upload==true"></i>
+                    <i class="upload icon ion-loop assertive" ng-if="x.upload==false" ng-click="SubmitSingleImage(x, true)"></i>
+                    <img class="add" ng-src="{{x.uri}}"/>
+                    <!--<img class="div-img"/>-->
+                </li>
+                <li class="image-item add ion-ios-camera-outline" ng-click="OpenTips()"></li>
+            </ul>
+            <!--</div>-->
+        </div>
+    </ion-content>
+
+    <div class="trail-mapbuttom-area opt-twogroup" ng-show="needTrailer">
+        <div class="row">
+            <div class="col col-50 text-left" style="line-height: 60px;">
+                <span class="positive round-text">{{trailStatus}}</span>
+            </div>
+            <div class="col col-50 text-right">
+                <!--<a class="button button-positive round-button" ng-click="gotoTrailer()">{{btnTCText}}</a>-->
+                <a class="button button-positive round-button" ng-click="gotoTrailer()">拖车操作</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bar bar-footer-m light-bg">
+        <div class="row">
+            <div class="col col-20"></div>
+            <div class="col col-60 button button-block button-positive" style="font-size:18px; line-height: 40px;"
+                 ng-click="SubmitInfo()">提交
+            </div>
+            <div class="col col-20"></div>
+            <!--<div class="col col-20 button button-block button-light" style="font-size:18px; line-height: 40px;"
+                 ng-click="SubmitInfo(true)">跳过
+            </div>-->
+        </div>
+    </div>
+
+    <!--图片选择-->
+    <script id="templates/modal.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">{{tipsImg[tipsImgIndex].title}}</h1>
+                <button class="button button-clear button-primary" ng-click="modal.hide()">取消</button>
+            </ion-header-bar>
+            <ion-content class="">
+                <div class="list">
+                    <div class="item item-borderless">
+                        <img class="phototips" ng-src="{{tipsImg[tipsImgIndex].img}}"/>
+                    </div>
+                    <div class="row">
+                        <div class="col col-40 text-right padding">
+                            <button class="button button-positive" ng-click="FromCamera()">拍照</button>
+                        </div>
+                        <div class="col col-60 text-left padding">
+                            <button class="button button-positive" ng-click="FromAlbum()">从相册中选取</button>
+                        </div>
+                    </div>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>
+

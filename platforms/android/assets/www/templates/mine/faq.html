@@ -1,0 +1,14 @@
+<ion-view view-title="热点问题">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            &nbsp;
+            <button class="button button-clear icon ion-ios-arrow-back" ng-click="gotoBack()"></button>
+        </div>
+        <h1 class="title">热点问题</h1>
+    </ion-header-bar>
+    <ion-content class="content stable-bg" overflow-scroll="true">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <!--<iframe style="width:100%;min-height:100%" ng-src="http://file.frtauto.com/rscapp/doc/qa"></iframe>-->
+        <iframe style="width:100%;min-height:100%" ng-src="http://apphotcodepush.yulinbest.com/qa/"></iframe>
+    </ion-content>
+</ion-view>

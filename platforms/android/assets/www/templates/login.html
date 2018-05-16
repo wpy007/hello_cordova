@@ -1,0 +1,32 @@
+<ion-view class="login-page-bg">
+    <!--<ion-header-bar align-title="center" class="bar-positive">-->
+        <!--<div class="buttons">-->
+            <!--&nbsp;-->
+            <!--<button class="button button-clear icon ion-ios-gear-outline" ng-click="gotoSetting()"></button>-->
+        <!--</div>-->
+    <!--</ion-header-bar>-->
+    <ion-content class="content" scrollbar-y="false" scroll="false">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <div class="list padding login-page light" id="notLogin">
+            <!--<a class="button button-clear icon ion-ios-help-outline" style="top: 20px; left: 100%; margin-left: -50px;" ui-sref="help" href="#/help"></a>-->
+            <label class="col text-center padding login-page-title">壹骥救援服务平台</label>
+            <div class="row login-page-item">
+                <span class="col-25 text-left padding item-label">用户名</span>
+                <input class="col-75 item-input" type="text" ng-model="data.username" required>
+                <a class="clear" ng-click="ClearInput('data.username')"></a>
+            </div>
+
+            <div class="row login-page-item">
+                <span class=" col-25 text-left padding item-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+                <input class="col-75 item-input"  type="password" ng-model="data.password" required>
+                <a class="clear" ng-click="ClearInput('data.password')"></a>
+            </div>
+
+            <button class="button button-block {{NetworkState=='none' ? 'button-stable' : 'button-balanced'}} login-page-button" ng-click="login()">
+                <i class="icon ion-log-in"></i>&nbsp;登录
+            </button>
+
+        </div>
+    </ion-content>
+
+</ion-view>

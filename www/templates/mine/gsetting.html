@@ -1,0 +1,53 @@
+<ion-view view-title="通用">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            &nbsp;
+            <button class="button button-clear icon ion-ios-arrow-back" ng-click="gotoBack()"></button>
+        </div>
+        <h1 class="title">通用</h1>
+    </ion-header-bar>
+    <ion-content class="content has-header stable-bg">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <div class="list">
+            <div class="item-divider-small"></div>
+            <a class="item item-icon-left item-icon-right" ng-click="ChangePassword()">
+                <i class="icon ion-ios-compose calm"></i>
+                密码修改
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+
+            <a class="item item-icon-left item-icon-right" ng-click="ClearCache()">
+                <i class="icon ion-ios-trash assertive"></i>
+                清理缓存
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+			
+            <a class="item item-icon-left item-icon-right" ng-click="OpenNativeSetting()">
+                <i class="icon ion-ios-settings balanced"></i>
+                设置程序
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+
+            <!--<a class="item item-icon-right" ng-click="openUrl()">-->
+                <!--下载-->
+                <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+            <!--</a>-->
+
+
+            <!--<a class="item" ng-click="changeServerIP()">-->
+                <!--服务器地址-->
+            <!--</a>-->
+            <!--<label class="item item-input item-input-inset" style="height: 55px;">-->
+                <!--<div class="input-label" style="padding-left: 5px; color: #000;">-->
+                    <!--未完任务提醒-->
+                <!--</div>-->
+                <!--<span style="color: #ababab; padding-left: 5px; text-align: right;">{{ufwReminderTime}}</span>-->
+                <!--<ionic-timepicker input-obj="timePickerObject">-->
+                    <!--<button class="button button-clear">-->
+                        <!--<standard-time-meridian etime='timePickerObject.inputEpochTime'></standard-time-meridian>-->
+                    <!--</button>-->
+                <!--</ionic-timepicker>-->
+            <!--</label>-->
+        </div>
+    </ion-content>
+</ion-view>

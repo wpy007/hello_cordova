@@ -1,0 +1,8 @@
+﻿{
+  "debug": {
+    "config-file": "http://apphotcodepush.yulinbest.com/test/chcp.json"
+  },
+  "release": {
+    "config-file": "http://apphotcodepush.yulinbest.com/prod/chcp.json"
+  }
+}

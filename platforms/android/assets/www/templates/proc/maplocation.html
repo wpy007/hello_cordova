@@ -1,0 +1,127 @@
+<ion-view view-title="任务信息">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <h1 class="title">任务信息</h1>
+        <div class="buttons">
+            <button class="button button-clear button-light" ng-show="bBtnClose" ng-click="Cancel()">关闭</button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="content has-header" scroll="false">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <div id="divMapDetail" class="item-mapdetail-area light-bg padding" ng-show="bMapDetail">
+            <div class="map-desc">
+                <div class="map-desc-item">
+                    <i class="icon ion-settings assertive"></i>
+                    <span>{{RscWOInfo.WO_FROM_TEXT}} {{RscWOInfo.GOODS_NAME}} {{RscWOInfo.SVC_TERMS ? '（'+ RscWOInfo.SVC_TERMS+'）' : ''}}</span>
+                			
+                </div>
+                <div class="map-desc-item">
+                    <i class="icon ion-flag assertive"></i>
+                    <span>{{RscWOInfo.FROM_ADDR}}</span>
+                </div>
+                <div class="map-desc-item">
+                    <i class="icon ion-arrow-graph-up-right assertive"></i>
+                    <span>距离您【{{RscWOInfo.EST_ARRIVE_MILEAGE}}】公里，是否接受？</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-40">
+                    <a class="button button-block button-light">{{NewItemCountDown}}秒</a>
+                </div>
+                <div class="col col-25">
+                    <a class="button button-block button-balanced" ng-click="Accept()">出发</a>   <!--接单即出发-->
+                </div>
+                <div class="col col-10"></div>
+                <div class="col col-25">
+                    <!--<a class="button button-block button-assertive" ng-click="Refuse()">拒绝</a>-->
+                    <a class="button button-block button-assertive" ng-click="OrderCancel(x)">拒绝</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="divMapNav" class="item-mapnav-area padding light-bg" ng-show="bMapNav">
+            <div class="row">
+                <a class="col col-33 light-bg button button-clear button-balanced  button-icon icon ion-android-pin"
+                   ng-click="StartPoint('click')">
+                    <br/><span class="dark">起点</span>
+                </a>
+                <a class="col col-33 light-bg button button-clear button-assertive button-icon icon ion-android-pin"
+                   ng-click="EndPoint('click')">
+                    <br/><span class="dark">故障点</span>
+                </a>
+                <a class="col col-33 light-bg button button-clear button-positive button-icon icon ion-android-call"
+                   href="tel:{{RscWOInfo.CUS_MOBILE}}" ng-click="MakeCall()" >
+                    <br/><span class="dark">电话</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="item-mapbuttom-area" ng-show="bMapGo">
+            <a class="button button-block button-balanced" ng-click="StartOff()">即刻出发</a>
+        </div>
+
+        <div class="item-mapbuttom-area opt-twogroup button-bar" ng-show="bMapArrive">
+            <!--<a class="button button-block button-positive" ng-click="Arrived()">到达现场</a>-->
+            <!-- <div class="button-bar"> -->
+                <a class="button button-block button-positive" ng-click="Arrived()">到达</a>
+                <a class="button button-block button-balanced" ng-click="BaiduNavi()">百度导航</a>
+                <a class="button button-block button-assertive" ng-click="CancelOrder()">取消</a>
+            <!-- </div> -->
+        </div>
+		<!--<div id="divMapArea" class="item-map-area">
+            <!--<angular-bmap></angular-bmap>-->
+        </div>-->
+        <div id="divMapArea" class="item-map-area" ng-show="divMapArea">
+            <!--<angular-bmap></angular-bmap>-->
+        </div>-->
+        <div id="divMapAreaTwo" class="item-map-area" ng-show="divMapAreaTwo"></div>
+    </ion-content>
+    <!--原因选择-->
+    <script id="templates/cancel.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">取消/退回</h1>
+                <button class="button button-clear button-primary" ng-click="cancel.hide()">取消</button>
+            </ion-header-bar>
+            <ion-content class="stable-bg">
+                <div class="item-divider-smaller"></div>
+                <div class="list">
+                    <ion-radio ng-repeat="x in selectList"
+                               ng-value="x.value"
+                               ng-click="CancelRscWo()"
+                               ng-model="data.reason">
+                        {{ x.text }}
+                    </ion-radio>
+                </div>
+
+                <div class="item-divider-small"></div>
+                <button class="button  button-block button-energized" ng-click="cancel.hide()">点错了，还要继续</button>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+
+    <!--状态更改-->
+    <script id="templates/modify.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">状态更改</h1>
+                <button class="button button-clear button-primary" ng-click="modify.hide()">取消</button>
+            </ion-header-bar>
+            <ion-content class="stable-bg">
+                <div class="item-divider-smaller"></div>
+                <div class="list">
+                    <ion-radio ng-repeat="x in selectList"
+                               ng-value="x.value"
+                               ng-click=""
+                               ng-model="data.reason">
+                        {{ x.text }}
+                    </ion-radio>
+                </div>
+
+                <div class="item-divider-small"></div>
+                <button class="button  button-block button-energized" ng-click="modify.hide()">点错了，还要继续</button>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>
+

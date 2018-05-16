@@ -1,0 +1,39 @@
+<ion-view view-title="拖车">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <h1 class="title">拖车</h1>
+        <div class="buttons">
+            <button class="button button-clear button-light" ng-click="Cancel()">关闭</button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="content has-header" scroll="false">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <div class="trail-mapnav-area light-bg">
+            <div class="desc-item" ng-click="StartPoint('click')">
+                <i class="icon ion-ios-location balanced"></i>
+                    <span class="desc">{{RscWOInfo.FROM_ADDR}}
+                    </span>
+            </div>
+            <div class="myline"></div>
+            <div class="desc-item" ng-click="EndPoint('click')">
+                <i class="icon ion-ios-location assertive"></i>
+                    <span class="desc">{{RscWOInfo.TO_ADDR}}
+                    </span>
+            </div>
+        </div>
+
+        <div class="trail-mapbuttom-area opt-onegroup" ng-show="bTrailStart">
+            <a class="button button-block button-balanced" ng-click="TrailStart()">拖车出发</a>
+        </div>
+		<div class="trail-mapbuttom-area opt-twogroup button-bar" ng-show="bTrailEnd">
+			<a class="button button-block button-assertive" ng-click="TrailEnd()">拖车到达</a>
+			<a class="button button-block button-positive" ng-click="BaiduNav()">百度导航</a>
+        </div>
+        <div class="trail-mapbuttom-area opt-onegroup" ng-show="bTrailClose">
+            <a class="button button-block button-energized" ng-click="Cancel()">关闭</a>
+        </div>
+
+        <div id="divMapArea" class="item-map-area">
+            <angular-bmap></angular-bmap>
+        </div>
+    </ion-content>
+</ion-view>

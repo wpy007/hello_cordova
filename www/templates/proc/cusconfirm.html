@@ -1,0 +1,206 @@
+<ion-view view-title="客户确认">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <h1 class="title">客户确认</h1>
+
+        <div class="buttons">
+            <button class="button button-clear button-light" ng-click="Cancel()">关闭</button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="content">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <div class="list padding">
+            <!--<div class="item item-borderless text-left item-text-wrap">-->
+            <!--<div class="padding">-->
+            <br/>
+            <table class="wo-table padding">
+                <tbody>
+                <tr>
+                    <td class="td-label">服务单号</td>
+                    <td class="td-value">{{RscWOInfo.WO_NO}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">服务类型</td>
+                    <td class="td-value">{{RscWOInfo.GOODS_NAME}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">车牌号</td>
+                    <td class="td-value">{{RscWOInfo.CAR_NO}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">出发时间</td>
+                    <td class="td-value">{{RscWOInfo.DISPATCH_DATE}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">出发位置</td>
+                    <td class="td-value">
+                        {{RscWOInfo.CAR_START_ADDR_PROVINCE}}{{RscWOInfo.CAR_START_ADDR_CITY}}{{RscWOInfo.CAR_START_ADDR_REGION}}{{RscWOInfo.CAR_START_ADDR_DETAIL}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-label">到达时间</td>
+                    <td class="td-value">{{RscWOInfo.ACT_ARRIVE_DATE}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">故障地点</td>
+                    <td class="td-value">{{RscWOInfo.FROM_ADDR_DETAIL}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">到达里程</td>
+                    <td class="td-value">{{RscWOInfo.ARRIVE_MILEAGE}}KM</td>
+                    <!--<td class="td-value"><div style="display: flex;"><div class="col-80">{{RscWOInfo.ARRIVE_MILEAGE}}KM</div> <div class="col-20 positive" ng-click="ModifyMiles(1)">修正</div></div></td>-->
+                </tr>
+                <tr ng-show="needTrailer">
+                    <td class="td-label">拖车里程</td>
+                    <td class="td-value">{{RscWOInfo.TRAILER_MILEAGE}}KM</td>
+                    <!--<td class="td-value"><div style="display: flex;"><div class="col-80">{{RscWOInfo.TRAILER_MILEAGE}}KM</div> <div class="col-20 positive" ng-click="ModifyMiles(2)">修正</div></div></td>-->
+                </tr>
+                <tr>
+                    <td class="td-label">照片数量</td>
+                    <td class="td-value">{{RscWOInfo.UDF1}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">是否事故救援</td>
+                    <td class="td-value">{{RscWOInfo.IS_INCIDENT == 1 ? "事故" : "非事故"}}</td>
+                </tr>
+                <tr ng-show="toPay > 0">
+                    <td class="td-label">客户付款</td>
+                    <td class="td-value"><button class="button button-clear" ng-click="GetPayQRPopup()">获取付款二维码</button></td>
+                </tr>
+                </tbody>
+            </table>
+            <!--</div>-->
+            <br/>
+
+            <div class="text-center assertive">{{IconList[CurrIndex].tips}}</div>
+            <div class="item item-borderless item-box-divide">
+                <span class="item-box-divide-label dark">你的满意度</span>
+
+                <div class="item-box-divide-value energized">
+                    <i class="icon {{IconList[1].icon}} item-box-icon" on-touch="HitEval(1)"></i>
+                    <i class="icon {{IconList[2].icon}} item-box-icon" on-touch="HitEval(2)"></i>
+                    <i class="icon {{IconList[3].icon}} item-box-icon" on-touch="HitEval(3)"></i>
+                    <i class="icon {{IconList[4].icon}} item-box-icon" on-touch="HitEval(4)"></i>
+                    <i class="icon {{IconList[5].icon}} item-box-icon" on-touch="HitEval(5)"></i>
+                </div>
+            </div>
+
+            <br/>
+
+            <div class="button button-block button-positive" style="width:60%; margin:auto;"
+                 ng-click="Record()">前往录音
+            </div>
+            <!--<br/><br/><br/><br/>-->
+        </div>
+    </ion-content>
+
+    <!--录音确认-->
+    <script id="templates/record-modal.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">录音确认</h1>
+                <button class="button button-clear" ng-click="CancelRecord()">取消</button>
+            </ion-header-bar>
+            <ion-content class="stable-bg has-footer-m" scroll="false">
+                <div class="list padding">
+
+                    <div class="record-secs">
+                        {{recTime}}秒
+                        <!--<span style="line-height:28px; font-size: 16px;">{{recTime}}秒</span>-->
+                        <!--<i ng-hide="recTime > 0 && !bRecording"-->
+                           <!--class="assertive ion-volume-medium playback-icon"-->
+                           <!--ng-click="PlayRecord()"></i>-->
+                    </div>
+                    <div ng-show="recTime > 0 && !bRecording" class="assertive record-playback" ng-click="PlayBack()">
+                    【{{replay}}】
+                    </div>
+                    <div class="text-center">
+                        <div class="record-tips">
+                            <div class="tips1">请发表您的宝贵的评价！谢谢！【&nbsp;<span class="assertive">{{recTimeDown}}</span>&nbsp;秒】</div>
+
+                            <img id="imgRec" ng-click="DoRecord()" src="img/rec.jpg"/>
+
+                            <!--<div ng-show="!bRecording" class="tips2">点击开始录音</div>-->
+                            <!--<div ng-show="bRecording" class="tips3">再次点击 结束录音</div>-->
+
+                            <div class="{{bRecording === true ? 'tips3' : 'tips2'}}">{{bRecording === true ? '再次点击 结束录音' : '点击开始录音'}}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </ion-content>
+            <div class="bar bar-footer-m light-bg">
+                <div class="row">
+                    <div class="col col-20"></div>
+                    <div class="col col-60 button button-block button-positive"
+                         style="font-size: 18px; line-height: 40px;"
+                         ng-click="SaveEvaluate()">完成
+                    </div>
+                    <!--<div class="col col-20"></div>-->
+                    <div class="col col-20 button button-block button-light"
+                         style="font-size: 18px; line-height: 40px;"
+                         ng-click="SaveEvaluate(true)">跳过
+                    </div>
+                </div>
+            </div>
+        </ion-modal-view>
+    </script>
+	
+    <!--录音确认-->
+    <script id="templates/pay-modal.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">线上支付</h1>
+                <button class="button button-clear" ng-click="CancelPay()">取消</button>
+            </ion-header-bar>
+            <ion-content class="stable-bg has-footer-m" scroll="true">
+				<div class="list card">
+
+				  <div class="item item-avatar" ng-click="GetPayQRCode('CAA-Alipay-002')">
+					<img src="img/apay.png">
+					<h2>支付宝支付</h2>
+					<p>点击获取支付宝付款码</p>
+				  </div>
+
+				  <div class="item item-body" ng-show="channelNO == 'CAA-Alipay-002'">
+					<img class="full-image" ng-src="{{payQRCodeURL}}">
+					<p>
+					  请车主用支付宝扫描二维码进行支付，完成后点击“完成”按钮。
+					</p>
+					<p>
+					  <a href="#" class="subdued">总金额：{{totalAmount}}</a>
+					  <a href="#" class="subdued">已支付金额：{{paidAmount}}</a>
+					  <a href="#" class="subdued">待支付金额：{{toPay}}</a>
+					</p>
+				  </div>
+
+				  <div class="item item-avatar" ng-click="GetPayQRCode('CAA-WeChat-001')">
+					<img src="img/wpay.png">
+					<h2>微信支付</h2>
+					<p>点击获取微信付款码</p>
+				  </div>
+
+				  <div class="item item-body" ng-show="channelNO == 'CAA-WeChat-001'">
+					<img class="full-image" ng-src="{{payQRCodeURL}}">
+					<p>
+					  请车主用微信扫描二维码进行支付，完成后点击“完成”按钮。
+					</p>
+					<p>
+					  <a href="#" class="subdued">总金额：{{totalAmount}}</a>
+					  <a href="#" class="subdued">已支付金额：{{paidAmount}}</a>
+					  <a href="#" class="subdued">待支付金额：{{toPay}}</a>
+					</p>
+				  </div>
+				</div>
+            </ion-content>
+            <div class="bar bar-footer-m light-bg">
+                <div class="row">
+                    <div class="col col-20"></div>
+                    <div class="col col-60 button button-block button-positive"
+                         style="font-size: 18px; line-height: 40px;"
+                         ng-click="PayOff()">完成
+                    </div>
+                </div>
+            </div>
+        </ion-modal-view>
+    </script>
+</ion-view>

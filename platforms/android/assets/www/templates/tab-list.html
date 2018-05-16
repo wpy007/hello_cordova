@@ -1,0 +1,149 @@
+<ion-view view-title="救援订单">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <h1 class="title">救援订单</h1>
+        <!--<div class="buttons">-->
+        <!--<button class="button button-clear icon ion-ios-more"></button>-->
+        <!--</div>-->
+    </ion-header-bar>
+    <div class="bar-subheader item-input-inset">
+        <ion-spinner class="bar-refresh-left" ng-show="bRefresh"
+                     icon="ios-small"></ion-spinner>
+        <div class="button-bar item-buttons">
+            <a class="button button-small {{btnTabCls[0]}} button-positive"
+               on-touch="hasSelect(0)">{{arrayTab[0].label}}</a>
+            <a class="button button-small {{btnTabCls[1]}} button-positive"
+               on-touch="hasSelect(1)">{{arrayTab[1].label}}</a>
+        </div>
+    </div>
+    <ion-content class="content stable-bg has-subheader">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <ion-refresher refreshing-icon="ion-loading-c" refreshing-text="云端获取数据中..." pulling-text="下拉刷新数据..."
+                       on-refresh="doRefresh()"></ion-refresher>
+        <ion-list>
+            <ion-item class="item-complex-rsc" ng-repeat="x in RscWoList">
+                <div class="item-rsc {{(x.IDLE_FLAG=='待完成' || x.RSC_STEP == '预约任务') ? 'remind-bg' : ''}}">
+                    <div ng-click="DoTrack(x, 'track')">
+                        <div class="row">
+                            <div class="col col-50 text-left">
+                                <i class="ion-flag positive"></i> {{x.WO_NO}}
+                            </div>
+                            <div class="col col-50 text-right assertive">
+                                {{x.IDLE_FLAG=='待完成' ? '【待完成】' : ''}}{{x.RSC_STEP}}
+                            </div>
+                        </div>
+                        <div class="row">
+                      <span class="col col-100 text-left">
+                          <p style="color: #3a3a3a;font-size: medium;">
+                              <i class="ion-ios-location positive"></i>&nbsp;{{x.FROM_ADDR}}({{x.CAR_NO}})
+                          </p>
+                      </span>
+                        </div>
+                        <div class="row">
+                            <div class="col col-50 text-left">
+                                <i class="ion-settings positive"></i> {{x.GOODS_NAME}}
+                            </div>
+                            <div class="col col-50 text-right">
+                                <i class="ion-clock positive"></i> {{x.CREATE_DATE}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="x.RSC_STEP=='已接单' || x.RSC_STEP=='已出发' || x.RSC_STEP=='已到达'
+                        || x.RSC_STEP=='已拍照' || x.RSC_STEP=='手工派单'
+                        || x.RSC_STEP=='拖车出发' || x.RSC_STEP=='拖车到达'
+                        || x.RSC_STEP=='预约任务' || x.RSC_STEP=='待完成'">
+                        <div class="col col-33 text-left" ng-click="ToDo(x)">
+                            <div class="color-gray  icon-left" style="line-height: 30px; min-height: 30px;"
+                                 ng-show="x.IDLE_FLAG!='待完成'"><i class="ion-android-alarm-clock"></i> 待完成
+                            </div>
+                            <div class="color-gray  icon-left" style="line-height: 30px; min-height: 30px;"
+                                 ng-show="x.IDLE_FLAG=='待完成'"><i class="ion-android-time"></i> 继续完成
+                            </div>
+                        </div>
+                        <div class="col col-34 text-center" ng-click="DoTrack(x, 'detail')">
+                            <div class="color-gray  icon-left" style="line-height: 30px; min-height: 30px;"><i
+                                    class="ion-ios-information"></i> 详情
+                            </div>
+                        </div>
+                        <div class="col col-33 text-right" ng-click="OrderCancel(x)">
+                            <div class="color-gray  icon-left" style="line-height: 30px; min-height: 30px;"><i
+                                    class="ion-ios-redo"></i> 取消/退回
+                            </div>
+                        </div>
+
+                        <!--<div class="col col-33 text-center" ng-click="DoTrack(x, 'detail')">-->
+                        <!--<span class="color-gray">详情</span>-->
+                        <!--</div>-->
+                        <!--<div class="col col-34 text-center"></div>-->
+                        <!--<div class="col col-33 text-right" ng-click="OrderCancel(x)">-->
+                        <!--<span class="color-gray">取消/退回</span>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+
+        <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+        <ion-infinite-scroll refreshing-icon="ion-loading-d" ng-if="moreData()" on-infinite="loadMore()"
+                             distance="10%"></ion-infinite-scroll>
+    </ion-content>
+
+    <!--原因选择-->
+    <script id="templates/cancel.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">取消/退回</h1>
+                <button class="button button-clear button-primary" ng-click="cancel.hide()">取消</button>
+            </ion-header-bar>
+            <ion-content class="stable-bg">
+                <div class="item-divider-smaller"></div>
+                <div class="list">
+                    <ion-radio ng-repeat="x in selectList"
+                               ng-value="x.value"
+                               ng-click="CancelRscWo()"
+                               ng-model="data.reason">
+                        {{ x.text }}
+                    </ion-radio>
+                </div>
+
+                <div class="item-divider-small"></div>
+                <button class="button  button-block button-energized" ng-click="cancel.hide()">点错了，还要继续</button>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+
+    <!--状态更改-->
+    <script id="templates/modify.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">状态更改</h1>
+                <button class="button button-clear button-primary" ng-click="modify.hide()">取消</button>
+            </ion-header-bar>
+            <ion-content class="stable-bg">
+                <div class="item-divider-smaller"></div>
+                <div class="list">
+                    <ion-radio ng-repeat="x in selectList"
+                               ng-value="x.value"
+                               ng-click=""
+                               ng-model="data.reason">
+                        {{ x.text }}
+                    </ion-radio>
+                </div>
+
+                <div class="item-divider-small"></div>
+                <button class="button  button-block button-energized" ng-click="modify.hide()">点错了，还要继续</button>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+
+    <!--浮动框-->
+    <!--<script id="my-popover.html" type="text/ng-template">-->
+    <!--<ion-popover-view style="width:100px; height: 60px;">-->
+    <!--<ion-content class="light-bg">-->
+    <!--<a class="item" ng-click="">-->
+    <!--搜索-->
+    <!--</a>-->
+    <!--</ion-content>-->
+    <!--</ion-popover-view>-->
+    <!--</script>-->
+</ion-view>
+

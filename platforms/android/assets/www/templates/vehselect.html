@@ -1,0 +1,49 @@
+<ion-view hide-nav-bar="true" class="carlist-page-bg">
+
+    <ion-content class="content" scrollbar-y="false" scroll="false">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <div class="list padding login-page" id="notLogin">
+
+            <label class="col text-center padding login-page-title light">请选择车辆</label>
+            <a class="item-select-cst" ng-click="select(data.ASSETS_NO, 'vehNo')">
+                <span class="item-selected-label light">车牌号</span>
+                <span class="item-selected-value light">{{data.ASSETS_NO}}</span>
+            </a>
+
+            <button class="button button-block button-balanced login-page-button" ng-click="GoHome()">
+                确定
+            </button>
+            <br/><br/><br/>
+            <div class="text-center">
+                <a class="energized" ng-click="GotoLogin()">
+                    返回登录
+                </a>
+            </div>
+            <!--<br/>-->
+            <!--<button class="button button-block button-positive" ng-click="login()">-->
+            <!--<i class="icon ion-ios-settings-strong"></i>&nbsp;设置-->
+            <!--</button>-->
+        </div>
+    </ion-content>
+
+    <!--modal 选择框-->
+    <script id="templates/modal.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-balanced">
+                <h1 class="title">{{selectListTitle}}</h1>
+                <button class="button button-clear button-primary" ng-click="modal.hide()">取消</button>
+            </ion-header-bar>
+            <ion-content class="">
+                <div class="list">
+                    <ion-radio ng-repeat="x in selectList"
+                               ng-value="x.ASSETS_NO"
+                               ng-click="updateInfo(x)"
+                               ng-model="clientInfo">
+                        {{ x.ASSETS_NO }}
+                    </ion-radio>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+
+</ion-view>

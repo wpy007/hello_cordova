@@ -1,0 +1,41 @@
+<ion-view view-title="我" cache-view="false">
+    <ion-header-bar align-title="center" class="bar-positive" >
+        <h1 class="title">我</h1>
+    </ion-header-bar>
+    <ion-content class="content stable-bg">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <div class="list">
+            <div class="item-divider-small"></div>
+            <a class="item item-avatar item-icon-right" ng-click="gotoUserInfo()">
+                <img ng-src="{{currentUser.USR_AVATAR_PATH == '' ? 'img/avatar.jpg' : currentUser.USR_AVATAR_PATH}}" />
+                <p>{{currentUser.USR_NAME}}</p>
+                <p>{{currentUser.SUP_NAME == '' ? currentUser.ORG_NAME : currentUser.SUP_NAME}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+
+            <div class="item-divider-small"></div>
+            <a class="item item-icon-left item-icon-right" ng-click="gotoGSetting()">
+                <i class="icon ion-ios-gear gray-color"></i>
+                设置
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+            <a class="item item-icon-left item-icon-right" ng-click="gotoHelp()">
+                <i class="icon ion-ios-help calm"></i>
+                帮助
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+            <!--<a class="item item-icon-right" ng-click="gotoError()">-->
+                <!--错误信息-->
+                <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+            <!--</a>-->
+            <div class="item-divider-small"></div>
+            <a class="item item-icon-left item-icon-right" ng-click="aboutUs()">
+                <i class="icon ion-ios-information energized"></i>
+                关于
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+            <!--<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>-->
+            <br/><br/><br/><br/><br/><br/>
+        </div>
+    </ion-content>
+</ion-view>

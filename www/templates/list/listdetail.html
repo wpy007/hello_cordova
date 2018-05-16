@@ -1,0 +1,152 @@
+<ion-view view-title="工单信息">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            &nbsp;
+            <button class="button button-clear icon ion-ios-arrow-back" ng-click="gotoBack()"></button>
+        </div>
+        <ion-spinner class="title-refresh-left" ng-show="bRefresh"
+                     icon="ios-small"></ion-spinner>
+        <h1 class="title">工单信息</h1>
+    </ion-header-bar>
+    <ion-content class="content">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <div class="list padding">
+            <div class="item-divider-smaller"></div>
+            <table class="wo-table">
+                <tbody>
+                <tr>
+                    <td class="td-label">服务单号</td>
+                    <td class="td-value">{{RscWOInfo.WO_NO}}</td>
+                </tr>
+				<tr>
+                    <td class="td-label">服务单状态</td>
+                    <td class="td-value">{{RscWOInfo.WO_STATUS}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">接线时间</td>
+                    <td class="td-value">{{RscWOInfo.WO_DATE}}</td>
+                </tr>
+                <tr ng-show="RscWOInfo.APPOINTMENT_DATE">
+                    <td class="td-label">预约时间</td>
+                    <td class="td-value assertive">{{RscWOInfo.APPOINTMENT_DATE}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">业务来源</td>
+                    <td class="td-value">{{RscWOInfo.WO_FROM_TEXT}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">客户姓名</td>
+                    <td class="td-value">{{RscWOInfo.CUS_NAME}}</td>
+                </tr>
+                <!--<tr>
+                    <td class="td-label">客户电话</td>
+                    <td class="td-value">{{RscWOInfo.CUS_MOBILE}}</td>
+                </tr>-->
+                <tr>
+                    <td class="td-label">车牌号码</td>
+                    <td class="td-value">{{RscWOInfo.CAR_NO}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">服务项目</td>
+                    <td class="td-value">{{RscWOInfo.GOODS_NAME}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">收费标准</td>
+                    <td class="td-value">{{RscWOInfo.SVC_TERMS}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">救援原因</td>
+                    <td class="td-value">{{RscWOInfo.RESCUE_REASON_TEXT}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">故障地点</td>
+                    <td class="td-value">{{RscWOInfo.FROM_ADDR}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">接单时间</td>
+                    <td class="td-value">{{RscWOInfo.WO_TAKE_DATE}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">调派时间</td>
+                    <td class="td-value">{{RscWOInfo.DISPATCH_DATE}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">回拨时间</td>
+                    <td class="td-value">{{RscWOInfo.RE_CONNECT_DATE}}</td>
+                </tr>
+                <tr ng-show="RscWOInfo.RSC_STEP == '已出发'">
+                    <td class="td-label">预计到达时间</td>
+                    <td class="td-value">{{RscWOInfo.EST_ARRIVE_DATE}}</td>
+                </tr>
+                <tr ng-show="RscWOInfo.RSC_STEP == '已出发'">
+                    <td class="td-label">预计到达里程</td>
+                    <td class="td-value">{{RscWOInfo.EST_ARRIVE_MILEAGE}}KM</td>
+                </tr>
+                <tr ng-show="RscWOInfo.RSC_STEP == '已取消'">
+                    <td class="td-label">空驶里程</td>
+                    <td class="td-value">{{RscWOInfo.EMPTY_RUN_MILEAGE}}KM</td>
+                </tr>
+                <tr ng-show="RscWOInfo.RSC_STEP == '已到达' || RscWOInfo.RSC_STEP == '已拍照' || RscWOInfo.RSC_STEP == '已完成' || RscWOInfo.RSC_STEP == '拖车出发' || RscWOInfo.RSC_STEP == '拖车到达'">
+                    <td class="td-label">到达现场时间</td>
+                    <td class="td-value">{{RscWOInfo.ACT_ARRIVE_DATE}}</td>
+                </tr>
+                <tr ng-show="RscWOInfo.RSC_STEP == '已到达' || RscWOInfo.RSC_STEP == '已拍照' || RscWOInfo.RSC_STEP == '已完成' || RscWOInfo.RSC_STEP == '拖车出发' || RscWOInfo.RSC_STEP == '拖车到达'">
+                    <td class="td-label">到达里程</td>
+                    <td class="td-value">{{RscWOInfo.ARRIVE_MILEAGE == '' ? '' : RscWOInfo.ARRIVE_MILEAGE + 'KM'}}</td>
+                </tr>
+                <tr ng-show="RscWOInfo.RSC_STEP == '已完成' || RscWOInfo.RSC_STEP == '拖车到达'">
+                    <td class="td-label">拖车里程</td>
+                    <td class="td-value">{{RscWOInfo.TRAILER_MILEAGE == '' ? '' : RscWOInfo.TRAILER_MILEAGE + 'KM'}}</td>
+                </tr>
+                <tr ng-show="RscWOInfo.RSC_STEP == '已完成' || RscWOInfo.RSC_STEP == '已拍照'">
+                    <td class="td-label">救援照片</td>
+                    <td class="td-value">{{RscWOInfo.UDF1==undefined || RscWOInfo.UDF1=='' ? '0' : RscWOInfo.UDF1}}张&nbsp;&nbsp;<a class="button-clear" ng-click="ShowDetail()">查看</a></td>
+                </tr>
+                <tr>
+                    <td class="td-label">调派供应商</td>
+                    <td class="td-value">{{RscWOInfo.DISPATCH_SP}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">实际供应商</td>
+                    <td class="td-value">{{RscWOInfo.ACT_SP}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">施救车辆</td>
+                    <td class="td-value">{{RscWOInfo.RSC_CAR_NO}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">调度车牌号</td>
+                    <td class="td-value">{{RscWOInfo.DISPATCH_CAR_NO}}</td>
+                </tr>
+                <tr ng-show="RscWOInfo.WO_STATUS == '已调度救援中'">
+                    <td class="td-label">当前救援状态</td>
+                    <td class="td-value">{{RscWOInfo.RSC_STEP}}{{RscWOInfo.IDLE_FLAG == '待完成' ? '【待完成】' : ''}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">派单方式</td>
+                    <td class="td-value">{{RscWOInfo.ASSIGN_MODE == 1 ? '自动派单' : '手动派单'}}</td>
+                </tr>
+                <tr ng-show="RscWOInfo.RSC_STEP == '已取消'">
+                    <td class="td-label">取消原因</td>
+                    <td class="td-value">{{RscWOInfo.CANCEL_RSN}}</td>
+                </tr>
+                <tr ng-show="RscWOInfo.RSC_STEP == '已完成'">
+                    <td class="td-label">实际完成时间</td>
+                    <td class="td-value">{{RscWOInfo.ACT_FINISH_DATE}}</td>
+                </tr>
+                <tr ng-show="RscWOInfo.RSC_STEP == '已完成'">
+                    <td class="td-label">客户满意度</td>
+                    <td class="td-value">{{RscWOInfo.CSI_VALUE == 0 ? '未评价':RscWOInfo.CSI_VALUE+'星'}}</td>
+                </tr>
+                <tr>
+                    <td class="td-label">说明</td>
+                    <td class="td-value">{{RscWOInfo.RESCUE_RMK}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </ion-content>
+    <ion-footer-bar ng-show="RscWOInfo.RSC_STEP == '手工派单' && RscWOInfo.RSC_STEP != '已取消'" align-title="center" class="app-bar-action">
+        <button class="button button-block button-energized col-center" ng-click="StartOff()">即刻出发</button>
+    </ion-footer-bar>
+</ion-view>

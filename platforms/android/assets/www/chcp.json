@@ -1,0 +1,8 @@
+{
+  "name": "RescueApp",
+  "ios_identifier": "com.yulin.rscapp",
+  "android_identifier": "com.yulin.rscapp",
+  "update": "now",
+  "content_url": "http://apphotcodepush.yulinbest.com/test",
+  "release": "2018.03.08-17.01.33"
+}

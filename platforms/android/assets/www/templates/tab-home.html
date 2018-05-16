@@ -1,0 +1,72 @@
+<ion-view view-title="首页">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <h1 class="title">首页</h1>
+        <div class="buttons">
+            <button class="button button-clear icon ion-ios-help-outline" ng-click="gotoHelp()"></button>
+            &nbsp;
+        </div>
+    </ion-header-bar>
+    <ion-content class="content stable-bg">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <div class="list">
+            <div class="row light-bg">
+                <div class="col col-100 item item-borderless item-avatar-custom">
+                    <img ng-src="{{avatarPath}}">
+
+                    <div>车牌：{{carNo}}</div>
+                    <div>车型：{{carType}}</div>
+                    <div>姓名：{{currentUser.EMP_NAME == '' ? currentUser.USR_REAL_NAME : currentUser.EMP_NAME}}</div>
+                    <div>星级：
+                        <i class="home-star ion-ios-star energized" ng-show="currentUser.USR_GRADE>0"></i>
+                        <i class="home-star ion-ios-star-outline energized" ng-show="currentUser.USR_GRADE<1"></i>
+                        <i class="home-star ion-ios-star energized" ng-show="currentUser.USR_GRADE>1"></i>
+                        <i class="home-star ion-ios-star-outline energized" ng-show="currentUser.USR_GRADE<2"></i>
+                        <i class="home-star ion-ios-star energized" ng-show="currentUser.USR_GRADE>2"></i>
+                        <i class="home-star ion-ios-star-outline energized" ng-show="currentUser.USR_GRADE<3"></i>
+                        <i class="home-star ion-ios-star energized" ng-show="currentUser.USR_GRADE>3"></i>
+                        <i class="home-star ion-ios-star-outline energized" ng-show="currentUser.USR_GRADE<4"></i>
+                        <i class="home-star ion-ios-star energized" ng-show="currentUser.USR_GRADE>4"></i>
+                        <i class="home-star ion-ios-star-outline energized" ng-show="currentUser.USR_GRADE<5"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="item-divider-small"></div>
+
+            <div class="row light-bg">
+                <div class="col col-50 item item-borderless">
+                    <div class="item-home-text">
+                        <span>今日订单：</span><strong class="num">{{todayOrderNum}}</strong>
+                    </div>
+                </div>
+                <div class="col col-50 item item-borderless">
+                    <div class="item-home-text">
+                        <span>本月累计：</span><strong class="num">{{monthOrderNum}}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+
+            <div class="row light-bg">
+                <div class="col col-100 item item-borderless" style="text-align: center">
+                    <div class="item-home-text emp-status">
+                        <span ng-show="wkrstatus!='待命中...'" class="status-label">当前状态：</span>
+                        <span ng-show="wkrstatus=='待命中...'" class="scanning-holder"></span>
+                        <span class="status-text">{{wkrstatus}}</span>
+                    </div>
+                    <img ng-show="wkrstatus=='待命中...'" class="scanning" ng-src="img/scanning.gif"/>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row padding">
+                <div class="col col-100 text-center padding">
+                    <a class="button button-block {{btnclass}} button-start" ng-click="doOption()">{{btntext}}</a>
+                </div>
+            </div>
+
+
+        </div>
+        <br/><br/><br/><br/>
+    </ion-content>
+</ion-view>

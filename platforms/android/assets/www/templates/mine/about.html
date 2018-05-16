@@ -1,0 +1,42 @@
+<ion-view view-title="关于">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            &nbsp;
+            <button class="button button-clear icon ion-ios-arrow-back" ng-click="gotoBack()"></button>
+        </div>
+        <h1 class="title">关于</h1>
+    </ion-header-bar>
+    <ion-content class="stable-bg">
+        <div ng-include="'templates/common/globaltips.html'"></div>
+        <div class="list padding-top">
+            <br/><br/>
+
+            <div class=" text-center">
+                <img ng-src="img/icon.png">
+                <h4>壹骥救援</h4>
+
+                <p>{{appVersion}}（{{environment}}）</p>
+            </div>
+
+            <br/><br/>
+            <a class="item item-icon-right" ng-click="gotoProfile()">
+                关于我们
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+            <a class="item item-icon-right right" ng-show="isAndroid" ng-click="checkUpdate()">
+                检查更新
+                <span class="item-tips-right item-tips-value" >{{appVersion}}</span>
+                <!--<span class="item-tips-new" ng-show="appVersion != serverAppVersion">new</span>-->
+                <!--<span class="item-tips-right item-tips-value" ng-show="appVersion == serverAppVersion">最新版本</span>-->
+                <!--<span class="item-tips-right item-tips-value" ng-show="appVersion != serverAppVersion">{{appVersion}}</span>-->
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+
+            <br/><br/><br/><br/><br/><br/><br/>
+            <div class="padding2">
+                <p class="myline"></p></div>
+            <p class="text-center">Yulinbest Tech. © 2015-2018</p>
+
+        </div>
+    </ion-content>
+</ion-view>

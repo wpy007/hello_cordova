@@ -1,0 +1,20 @@
+{
+  "android": {
+    "release": {
+      "keystore": "yjrescue.keystore",
+      "storePassword": "yjrescue",
+      "alias": "",
+      "password": "",
+      "keystoreType": ""
+    }
+  },
+  "ios": {
+    "release": {
+      "keystore": "",
+      "storePassword": "",
+      "alias": "",
+      "password": "",
+      "keystoreType": ""
+    }
+  }
+}

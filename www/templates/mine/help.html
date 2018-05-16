@@ -1,0 +1,27 @@
+<ion-view view-title="用户指南">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            &nbsp;
+            <button class="button button-clear icon ion-ios-arrow-back" ng-click="gotoBack()"></button>
+        </div>
+        <h1 class="title">用户指南</h1>
+        <!--<div class="buttons">-->
+        <!--<button class="button button-clear icon ion-navicon" ng-click=""></button>-->
+        <!--</div>-->
+    </ion-header-bar>
+    <ion-content class="content stable-bg">
+        <div class="list">
+            <div ng-include="'templates/common/globaltips.html'"></div>
+            <div class="item-divider-small"></div>
+            <a class="item item-icon-right" ng-click="gotoWorkFlow()">
+                救援操作流程
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+            <!--<div class="item-divider-small"></div>-->
+            <a class="item item-icon-right" ng-click="gotoQA()">
+                热点问题
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,275 @@
+/*@keyframes svg-dash {*/
+/*from {*/
+/*stroke-dashoffset: 5;*/
+/*}*/
+/*to {*/
+/*stroke-dashoffset: 55;*/
+/*}*/
+/*}*/
+/*#svg2 path {*/
+/*animation: svg-dash 5s linear infinite;*/
+/*}*/
+
+.item-divider-small {
+    padding: 5px 10px;
+    min-height: 20px;
+    /*background-color: #f5f5f5;*/
+    color: #888;
+    font-weight: 600;
+}
+
+.bar-refresh-left {
+    position: absolute;
+    margin-top: -3px;
+    margin-left: 20px;
+}
+
+.title-refresh-left {
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 80px;
+}
+
+/*.content {*/
+/*min-height: 2000px;*/
+/*}*/
+
+.remind-bg {
+    background-color: #ffffe0;
+    /*background-color: #f2ffe8;*/
+}
+
+.button-start {
+    /*padding: 5px;*/
+    /*border-radius: 40px;*/
+    font-size: 20px;
+    /*line-height: 40px;*/
+}
+
+/*popover µ¯³ö¿ò*/
+.popup-container .popup {
+    width: 250px;
+!important;
+    max-width: 100%;
+    max-height: 90%;
+    border-radius: 15px;
+!important;
+    background-color: #f5f5f5;
+}
+
+.popup-container.active .popup {
+    -webkit-animation-duration: 0.4s;
+!important;
+    animation-duration: 0.4s;
+!important;
+    -webkit-animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+!important;
+    animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+!important;
+}
+
+.popup-head {
+    padding: 10px;
+!important;
+    /*border-bottom: 0px solid #f0f0f0;*/
+    /*!important;*/
+    background-color: #f0f0f0;
+!important;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+
+.popup-body {
+    padding: 10px;
+!important;
+    overflow: auto;
+    min-height: 40px;
+!important;
+    /*margin: 0px 10px;*/
+    /*border-bottom: 1px solid #ccc;*/
+}
+
+.popup-buttons {
+    padding: 10px;
+!important;
+    min-height: 30px;
+!important;
+    background-color: #f0f0f0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.popup-buttons .button {
+    min-height: 20px;
+!important;
+    border-radius: 0px;
+!important;
+    line-height: 20px;
+!important;
+    margin-right: 0px;
+!important;
+}
+
+.popup-buttons .button.confirm-ok {
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+    color: #657cff;
+    font-size: 18px;
+
+    border-left: 1px solid #fff;
+    margin-right: 0px;
+}
+
+.popup-buttons .button.confirm-cancel {
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+    color: #ff634c;
+    font-size: 18px;
+
+    border-right: 1px solid #f0f0f0;
+    margin-left: 0px;
+}
+
+.popup-buttons .button.alert-ok {
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+    color: #657cff;
+    font-size: 18px;
+}
+
+/*popover µ¯³ö¿ò*/
+
+.loading-container .loading {
+    padding: 10px 20px;
+!important;
+    border-radius: 8px;
+!important;
+    background-color: rgba(0, 0, 0, 0.5);
+!important;
+}
+
+/*$ionicModal animation start*/
+/*slide-in-right*/
+.slide-in-right {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+}
+
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+    -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 500ms;
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 500ms;
+}
+
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+    -webkit-transition: all ease-in-out 200ms;
+    transition: all ease-in-out 200ms;
+}
+
+/*slide-in-left*/
+.slide-in-left {
+    /*-webkit-transform: translateX(-100%);*/
+    /*transform: translateX(-100%);*/
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+}
+
+.slide-in-left.ng-enter, .slide-in-left > .ng-enter {
+    -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 500ms;
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 500ms;
+}
+
+.slide-in-left.ng-enter-active, .slide-in-left > .ng-enter-active {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.slide-in-left.ng-leave, .slide-in-left > .ng-leave {
+    -webkit-transition: all ease-in-out 200ms;
+    transition: all ease-in-out 200ms;
+}
+
+/*slide-in-down*/
+.slide-in-down {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+}
+
+.slide-in-down.ng-enter, .slide-in-down > .ng-enter {
+    /*-webkit-transition: all cubic-bezier(0.68, -0.55, 0.27, 1.55) 600ms;*/
+    /*transition: all cubic-bezier(0.68, -0.55, 0.27, 1.55) 600ms;*/
+    -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 500ms;
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 500ms;
+}
+
+.slide-in-down.ng-enter-active, .slide-in-down > .ng-enter-active {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.slide-in-down.ng-leave, .slide-in-down > .ng-leave {
+    -webkit-transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms;
+}
+
+/*slide-in-popup*/
+.slide-in-popup {
+    -webkit-transform: scale3d(0.01, 0.01, 1);
+    transform: scale3d(0.01, 0.01, 1);
+}
+
+.slide-in-popup.ng-enter, .slide-in-popup > .ng-enter {
+    /*-webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 500ms;*/
+    /*transition: all cubic-bezier(0.1, 0.7, 0.1, 1)  500ms;*/
+    -webkit-transition: all cubic-bezier(0.68, -0.55, 0.27, 1.55) 600ms;
+    transition: all cubic-bezier(0.68, -0.55, 0.27, 1.55) 600ms;
+}
+
+.slide-in-popup.ng-enter-active, .slide-in-popup > .ng-enter-active {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.slide-in-popup.ng-leave, .slide-in-popup > .ng-leave {
+    -webkit-transition: all ease-in-out 200ms;
+    transition: all ease-in-out 200ms;
+}
+
+.gray-color {
+    color: #909090;
+}
+
+.slider {
+    height: 100%;
+}
+
+.slider-slide {
+    color: #fff;
+    background-color: #fff;
+    text-align: center;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    text-align:center;
+}
+
+.box .imgcls {
+    width: 100%;
+    /*height: 100%;*/
+    background-image: url('../img/ionic.png');
+    background-repeat:no-repeat;
+    background-position:center;
+    margin:30px 0px;
+}
